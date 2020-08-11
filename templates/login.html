@@ -1,0 +1,92 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Nursery | Login</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico'%}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        .contact-form-area{
+            margin-top:20px;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-circle"></div>
+    <div class="preloader-img">
+        <img src="{% static 'img/core-img/leaf.png' %}" alt="IMAGE">
+    </div>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+{% include 'header.html' %}
+{% block header1 %}
+
+{% endblock %}
+
+<!-- ##### Header Area End ##### -->
+<div class="breadcrumb-area">
+    <!-- Top Breadcrumb Area -->
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"style="background-image: url('/statics/img/bg-img/24.jpg');">
+        <h2>Login</h2>
+    </div>
+    <div class="contact-form-area mb-100">
+        <form action="login" method="post">
+            {% csrf_token %}
+            <div class="row" style="padding: 0% 20% 0% 20%;">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn alazea-btn mt-15">Login</button>
+                    <a style="text-align:right" href="registration"><p>Dont have account yet !!! Registration here...</p></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js'%}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/bootstrap/popper.min.js'%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap/bootstrap.min.js'%}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins/plugins.js'%}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js'%}"></script>
+</body>
+
+</html>

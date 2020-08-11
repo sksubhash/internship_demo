@@ -1,0 +1,93 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Nurseries | Home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico'%}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-circle"></div>
+    <div class="preloader-img">
+        <img src="img/core-img/leaf.png" alt="IMAGE">
+    </div>
+</div>
+
+{% include 'header2.html' %}
+{% block header1 %}
+{% endblock %}
+
+<!-- ##### Header Area End ##### -->
+<div class="breadcrumb-area">
+    <!-- Top Breadcrumb Area -->
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"style="background-image: url('/statics/img/bg-img/24.jpg');">
+        <h2>Order List</h2>
+    </div>
+    <div class="contact-form-area mb-100">
+        <div class="alert alert-success" style="text-align:center">
+            <table style="text-align:center" class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Plants Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Amount</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 {% for task in alltasks%}
+                    <tr>
+                        <td>{{task.customer_name}}</td>
+                        <td>{{task.name}}</td>
+                        <td>{{task.quantity}}</td>
+                        <td>{{task.price}}</td>
+                        <td>{{task.amount}}</td>
+                        <form action="./home" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="order_id" value="{{task.id}}">
+
+                            {% if task.order_status == 1 %}
+                            <td><span class="btn alazea-btn" disabled>Order Accepted</span></td>
+                            {% else %}
+                            <td><button type="submit" class="btn alazea-btn">Accept Order</button></td>
+                            {% endif %}
+                        </form>
+                    </tr>
+                 {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- ##### Footer Area End ##### -->
+
+<!-- ##### All Javascript Files ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{% static 'js/jquery/jquery-2.2.4.min.js'%}"></script>
+<!-- Popper js -->
+<script src="{% static 'js/bootstrap/popper.min.js'%}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'js/bootstrap/bootstrap.min.js'%}"></script>
+<!-- All Plugins js -->
+<script src="{% static 'js/plugins/plugins.js'%}"></script>
+<!-- Active js -->
+<script src="{% static 'js/active.js'%}"></script>
+</body>
+
+</html>
